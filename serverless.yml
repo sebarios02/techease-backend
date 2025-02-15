@@ -1,0 +1,13 @@
+service: techease-api
+provider:
+  name: aws
+  runtime: python3.9
+  environment:
+    OPENAI_API_KEY: ${ssm:/techease-api/openai-api-key}
+functions:
+  chat:
+    handler: server.chat
+    events:
+      - http:
+          path: chat
+          method: post
